@@ -232,6 +232,29 @@
                     <li>
                         <a href="/License" title="라이선스">라이선스</a>
                     </li>
+                    {%if verrev('4.17.99') %}
+                        {%if perms.has('ipacl') %}
+                        <li>
+                            <a href="/admin/ipacl" title="[관리] IPACL">[관리] IPACL</a>
+                        </li>
+                        {% endif %}
+                        {% if perms.has('suspend_account') %}
+                        <li>
+                            <a href="admin/suspend_account" title="[관리] 사용자 차단">[관리] 사용자 차단</a>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        {%if perms.has('aclgroup') %}
+                        <li>
+                            <a href="/aclgroup" title="[관리] ACLGroup">[관리] ACLGroup</a>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                    {%if perms.has('login_history') %}
+                    <li>
+                        <a href="/admin/login_history" title="[관리] 로그인 내역 조회">[관리] 로그인 내역 조회</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
